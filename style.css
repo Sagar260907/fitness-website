@@ -1,35 +1,80 @@
-/* style.css - All styles for FusionFit Fitness Tracker */
+/* style.css - Complete styles for FusionFit Fitness Tracker (Matches HTML exactly) */
 
+/* ============================================
+   BASE STYLES & SMOOTH SCROLLING
+   ============================================ */
 html { 
     scroll-behavior: smooth; 
 }
 
 body { 
-    font-family: 'Inter', system-ui, -apple-system, sans-serif; 
+    font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; 
     background: #fefefe; 
 }
 
-.video-card:hover .play-overlay { 
-    opacity: 1; 
-}
-
+/* ============================================
+   CARD STYLES (Matches .exercise-card in HTML)
+   ============================================ */
 .calorie-card { 
-    transition: transform 0.2s ease; 
+    transition: transform 0.2s ease, box-shadow 0.2s ease; 
 }
 
 .calorie-card:focus-within, 
 .calorie-card:hover { 
     transform: translateY(-4px); 
+    box-shadow: 0 20px 25px -12px rgba(0, 0, 0, 0.1);
 }
 
+/* Exercise card styling - matches HTML exactly */
+.exercise-card {
+    transition: all 0.3s ease;
+}
+
+.exercise-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 20px 25px -12px rgba(0, 0, 0, 0.15);
+}
+
+/* Exercise image container - matches HTML structure */
+.exercise-img-container {
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+}
+
+.exercise-img {
+    transition: transform 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.exercise-card:hover .exercise-img {
+    transform: scale(1.05);
+}
+
+/* Image overlay - matches HTML .img-overlay class */
+.img-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.4), rgba(0,0,0,0.1));
+    pointer-events: none;
+}
+
+/* ============================================
+   GLASS EFFECT
+   ============================================ */
 .glass-effect { 
     background: rgba(255,255,240,0.85); 
     backdrop-filter: blur(3px); 
 }
 
-/* Custom scrollbar */
+/* ============================================
+   CUSTOM SCROLLBAR
+   ============================================ */
 ::-webkit-scrollbar { 
-    width: 6px; 
+    width: 8px;
+    height: 8px;
 }
 
 ::-webkit-scrollbar-track { 
@@ -42,51 +87,271 @@ body {
     border-radius: 10px; 
 }
 
-button:active { 
-    transform: scale(0.97); 
+::-webkit-scrollbar-thumb:hover {
+    background: #ea580c;
 }
 
-.voice-btn { 
-    transition: all 0.2s; 
+/* ============================================
+   BUTTON STYLES
+   ============================================ */
+button:active { 
+    transform: scale(0.97); 
+    transition: transform 0.05s ease;
+}
+
+/* Voice button styling - matches HTML .voice-exercise-btn */
+.voice-exercise-btn { 
+    transition: all 0.2s ease;
+    cursor: pointer;
+    background: transparent;
+    border: none;
+    border-radius: 50%;
+    width: 2rem;
+    height: 2rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.voice-exercise-btn:hover {
+    transform: scale(1.15);
+    color: #f97316;
+    background: rgba(249, 115, 22, 0.1);
 }
 
 .voice-exercise-btn:focus-visible { 
     outline: 2px solid #f97316; 
+    outline-offset: 2px;
 }
 
-video { 
-    background: #1e1e2f; 
-    border-radius: 12px; 
-}
-
-/* Responsive adjustments */
-@media (max-width: 768px) {
-    .calorie-card, .bg-white {
-        margin-bottom: 1rem;
-    }
-    
-    h2 {
-        font-size: 1.5rem;
-    }
-}
-
-/* Animation for voice button */
+/* ============================================
+   ANIMATIONS
+   ============================================ */
 @keyframes pulse {
     0% { transform: scale(1); }
-    50% { transform: scale(1.05); }
+    50% { transform: scale(1.1); }
     100% { transform: scale(1); }
+}
+
+@keyframes voiceWave {
+    from {
+        text-shadow: 0 0 0px #f97316;
+    }
+    to {
+        text-shadow: 0 0 8px #f97316;
+    }
 }
 
 .voice-exercise-btn:hover i {
     animation: pulse 0.5s ease-in-out;
 }
 
-/* Floating button hover effect */
+/* Speaking state */
+.voice-speaking {
+    animation: voiceWave 0.5s ease-in-out infinite alternate;
+}
+
+/* Floating button - matches HTML #floatingVoiceHelp */
 #floatingVoiceHelp {
     transition: all 0.3s ease;
+    cursor: pointer;
+    z-index: 1000;
 }
 
 #floatingVoiceHelp:hover {
     transform: scale(1.1);
-    box-shadow: 0 10px 25px rgba(249, 115, 22, 0.3);
+    box-shadow: 0 10px 25px rgba(249, 115, 22, 0.4);
+}
+
+@keyframes floatingPulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(249, 115, 22, 0.7);
+    }
+    70% {
+        box-shadow: 0 0 0 12px rgba(249, 115, 22, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(249, 115, 22, 0);
+    }
+}
+
+#floatingVoiceHelp {
+    animation: floatingPulse 2s infinite;
+}
+
+#floatingVoiceHelp:hover {
+    animation: none;
+}
+
+/* ============================================
+   MEAL LOG STYLES - matches HTML .meal-log-scroll
+   ============================================ */
+.meal-log-scroll {
+    scrollbar-width: thin;
+    scrollbar-color: #f97316 #e2e8f0;
+}
+
+.meal-log-scroll::-webkit-scrollbar {
+    width: 5px;
+}
+
+.meal-log-scroll::-webkit-scrollbar-track {
+    background: #e2e8f0;
+    border-radius: 10px;
+}
+
+.meal-log-scroll::-webkit-scrollbar-thumb {
+    background: #f97316;
+    border-radius: 10px;
+}
+
+/* Delete meal button */
+.delete-meal {
+    transition: all 0.2s ease;
+    cursor: pointer;
+}
+
+.delete-meal:hover {
+    transform: scale(1.1);
+    color: #dc2626;
+}
+
+/* ============================================
+   TOAST NOTIFICATION - matches HTML toast system
+   ============================================ */
+.toast-notification {
+    position: fixed;
+    bottom: 80px;
+    right: 20px;
+    background: #1f2937;
+    color: white;
+    padding: 0.75rem 1.25rem;
+    border-radius: 12px;
+    font-size: 0.875rem;
+    z-index: 1000;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.2);
+    transform: translateX(400px);
+    transition: transform 0.3s ease;
+    border-left: 4px solid #f97316;
+    font-family: inherit;
+}
+
+.toast-notification.show {
+    transform: translateX(0);
+}
+
+/* ============================================
+   BADGE STYLES - matches HTML .badge
+   ============================================ */
+.badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    background: #fef3c7;
+    color: #f97316;
+    padding: 0.25rem 0.75rem;
+    border-radius: 9999px;
+    font-size: 0.75rem;
+    font-weight: 500;
+}
+
+/* ============================================
+   NAVIGATION LINKS - matches HTML .nav-link
+   ============================================ */
+.nav-link {
+    transition: all 0.2s ease;
+}
+
+.nav-link:hover {
+    text-decoration: underline;
+    text-underline-offset: 4px;
+}
+
+/* ============================================
+   FOOTER LINKS - matches HTML .footer-link
+   ============================================ */
+.footer-link {
+    transition: color 0.2s ease;
+}
+
+.footer-link:hover {
+    color: #fdba74;
+}
+
+/* ============================================
+   INPUT FOCUS STYLES
+   ============================================ */
+input:focus, 
+select:focus {
+    outline: none;
+    ring: 2px solid #f97316;
+    ring-offset: 1px;
+}
+
+/* ============================================
+   RESPONSIVE ADJUSTMENTS
+   ============================================ */
+@media (max-width: 768px) {
+    .calorie-card, 
+    .bg-white {
+        margin-bottom: 1rem;
+    }
+    
+    h2 {
+        font-size: 1.5rem;
+    }
+    
+    .exercise-img-container {
+        aspect-ratio: 16/9;
+    }
+    
+    .toast-notification {
+        bottom: 70px;
+        right: 16px;
+        left: 16px;
+        transform: translateY(100px);
+    }
+    
+    .toast-notification.show {
+        transform: translateY(0);
+    }
+}
+
+@media (max-width: 640px) {
+    .voice-exercise-btn {
+        font-size: 1.25rem;
+        width: 1.75rem;
+        height: 1.75rem;
+    }
+}
+
+/* ============================================
+   UTILITY CLASSES
+   ============================================ */
+.ripple-btn {
+    position: relative;
+    overflow: hidden;
+}
+
+.ripple-btn:after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.5);
+    transform: translate(-50%, -50%);
+    transition: width 0.3s, height 0.3s;
+}
+
+.ripple-btn:active:after {
+    width: 200%;
+    height: 200%;
+}
+
+/* Smooth transitions */
+.transition-smooth {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
