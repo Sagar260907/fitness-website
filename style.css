@@ -1,0 +1,92 @@
+/* style.css - All styles for FusionFit Fitness Tracker */
+
+html { 
+    scroll-behavior: smooth; 
+}
+
+body { 
+    font-family: 'Inter', system-ui, -apple-system, sans-serif; 
+    background: #fefefe; 
+}
+
+.video-card:hover .play-overlay { 
+    opacity: 1; 
+}
+
+.calorie-card { 
+    transition: transform 0.2s ease; 
+}
+
+.calorie-card:focus-within, 
+.calorie-card:hover { 
+    transform: translateY(-4px); 
+}
+
+.glass-effect { 
+    background: rgba(255,255,240,0.85); 
+    backdrop-filter: blur(3px); 
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar { 
+    width: 6px; 
+}
+
+::-webkit-scrollbar-track { 
+    background: #e2e8f0; 
+    border-radius: 10px; 
+}
+
+::-webkit-scrollbar-thumb { 
+    background: #f97316; 
+    border-radius: 10px; 
+}
+
+button:active { 
+    transform: scale(0.97); 
+}
+
+.voice-btn { 
+    transition: all 0.2s; 
+}
+
+.voice-exercise-btn:focus-visible { 
+    outline: 2px solid #f97316; 
+}
+
+video { 
+    background: #1e1e2f; 
+    border-radius: 12px; 
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .calorie-card, .bg-white {
+        margin-bottom: 1rem;
+    }
+    
+    h2 {
+        font-size: 1.5rem;
+    }
+}
+
+/* Animation for voice button */
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+.voice-exercise-btn:hover i {
+    animation: pulse 0.5s ease-in-out;
+}
+
+/* Floating button hover effect */
+#floatingVoiceHelp {
+    transition: all 0.3s ease;
+}
+
+#floatingVoiceHelp:hover {
+    transform: scale(1.1);
+    box-shadow: 0 10px 25px rgba(249, 115, 22, 0.3);
+}

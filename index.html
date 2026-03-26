@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title>FusionFit | AI Fitness Tracker & Calorie Engine</title>
+  <!-- Google Fonts + Tailwind + Font Awesome -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="antialiased">
+
+  <!-- NAVBAR with Git / Repo link -->
+  <header class="bg-gradient-to-r from-orange-600 to-orange-500 shadow-md sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex flex-wrap justify-between items-center">
+      <div class="flex items-center space-x-2">
+        <i class="fas fa-dumbbell text-white text-2xl"></i>
+        <h1 class="text-2xl font-extrabold tracking-tight text-white">Fusion<span class="font-light">Fit</span></h1>
+        <span class="bg-white/20 text-white text-xs px-2 py-1 rounded-full ml-2">AI Coach</span>
+      </div>
+      <div class="flex items-center space-x-4 text-white">
+        <a href="#calorie-calc" class="hover:underline text-sm font-medium hidden sm:inline"><i class="fas fa-fire-alt mr-1"></i> Calorie Tool</a>
+        <a href="#exercise-library" class="hover:underline text-sm font-medium hidden sm:inline"><i class="fas fa-video mr-1"></i> Exercise Library</a>
+        <a href="https://github.com/yourusername/fusionfit-tracker" target="_blank" class="bg-white/20 hover:bg-white/30 px-3 py-1.5 rounded-full text-sm font-semibold transition flex items-center gap-1"><i class="fab fa-github"></i> GitHub Repo</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <!-- Hero section -->
+    <div class="bg-orange-50 rounded-2xl p-6 md:p-8 mb-12 shadow-sm border border-orange-100">
+      <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+        <div>
+          <h2 class="text-3xl md:text-4xl font-bold text-gray-800">Smart Fitness Tracker <span class="text-orange-500">+ AI Voice</span></h2>
+          <p class="text-gray-600 mt-2 max-w-2xl">Calculate daily calories, watch pro exercise demos, and let our AI voice coach explain each movement with tips & form cues.</p>
+        </div>
+        <button id="globalVoiceIntro" class="bg-orange-600 hover:bg-orange-700 text-white px-5 py-2 rounded-full shadow-md flex items-center gap-2 transition"><i class="fas fa-microphone-alt"></i> Welcome Voice-over</button>
+      </div>
+    </div>
+
+    <!-- CALORIE CALCULATOR SECTION -->
+    <section id="calorie-calc" class="mb-16 scroll-mt-20">
+      <div class="flex items-center gap-3 border-b border-gray-200 pb-3 mb-6">
+        <i class="fas fa-calculator text-3xl text-orange-500"></i>
+        <h2 class="text-2xl font-bold text-gray-800">Calorie Calculator & Tracker</h2>
+        <span class="bg-gray-100 text-gray-600 text-xs px-2 py-1 rounded-full">real-time sync with localDB</span>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <!-- calculator form -->
+        <div class="bg-white rounded-xl shadow-lg p-6 calorie-card border border-gray-100">
+          <h3 class="text-xl font-semibold text-gray-700 mb-4"><i class="fas fa-user text-orange-500 mr-2"></i> Your Metrics</h3>
+          <div class="space-y-4">
+            <div class="grid grid-cols-2 gap-4">
+              <div><label class="block text-sm font-medium text-gray-600">Age</label><input type="number" id="age" placeholder="25" class="mt-1 w-full border border-gray-300 rounded-lg p-2 focus:ring-orange-400 focus:border-orange-400"></div>
+              <div><label class="block text-sm font-medium text-gray-600">Weight (kg)</label><input type="number" id="weight" placeholder="70" class="mt-1 w-full border border-gray-300 rounded-lg p-2"></div>
+              <div><label class="block text-sm font-medium text-gray-600">Height (cm)</label><input type="number" id="height" placeholder="170" class="mt-1 w-full border border-gray-300 rounded-lg p-2"></div>
+              <div><label class="block text-sm font-medium text-gray-600">Gender</label><select id="gender" class="mt-1 w-full border border-gray-300 rounded-lg p-2"><option>Male</option><option>Female</option></select></div>
+            </div>
+            <div><label class="block text-sm font-medium text-gray-600">Activity Level</label><select id="activity" class="w-full border border-gray-300 rounded-lg p-2"><option value="1.2">Sedentary (little exercise)</option><option value="1.375">Light (1-3 days/week)</option><option value="1.55">Moderate (3-5 days)</option><option value="1.725">Active (daily)</option><option value="1.9">Athlete</option></select></div>
+            <button id="calcCaloriesBtn" class="w-full bg-orange-500 hover:bg-orange-600 text-white font-bold py-2.5 rounded-lg shadow transition flex items-center justify-center gap-2"><i class="fas fa-chart-line"></i> Calculate BMR & Daily Calories</button>
+          </div>
+          <div id="calorieResult" class="mt-5 p-4 bg-gray-50 rounded-lg border border-gray-200 hidden">
+            <p class="font-bold text-gray-800"><i class="fas fa-heartbeat text-orange-500 mr-1"></i> BMR: <span id="bmrValue">0</span> kcal/day</p>
+            <p class="font-bold text-gray-800 mt-1"><i class="fas fa-apple-alt text-green-600 mr-1"></i> Maintenance Calories: <span id="maintenanceValue">0</span> kcal/day</p>
+            <p class="text-sm text-gray-500 mt-2">*Based on Mifflin-St Jeor formula. Adjust for goals.</p>
+          </div>
+        </div>
+
+        <!-- History / Log (Database simulation) -->
+        <div class="bg-white rounded-xl shadow-lg p-6 border border-gray-100">
+          <div class="flex justify-between items-center mb-4 flex-wrap gap-2">
+            <h3 class="text-xl font-semibold text-gray-700"><i class="fas fa-database text-orange-500 mr-2"></i> Nutrition Log (Local DB)</h3>
+            <button id="clearLogsBtn" class="text-red-500 text-sm hover:bg-red-50 px-3 py-1 rounded-full transition"><i class="fas fa-trash-alt"></i> Clear</button>
+          </div>
+          <div class="mb-3 flex gap-2">
+            <input type="text" id="mealName" placeholder="Meal (e.g., Protein shake)" class="flex-1 border border-gray-300 rounded-lg p-2 text-sm">
+            <input type="number" id="mealCalories" placeholder="Calories" class="w-28 border border-gray-300 rounded-lg p-2 text-sm">
+            <button id="addMealBtn" class="bg-green-500 hover:bg-green-600 text-white px-3 rounded-lg"><i class="fas fa-plus"></i></button>
+          </div>
+          <div class="max-h-48 overflow-y-auto border-t border-gray-100 pt-2">
+            <ul id="mealLogList" class="space-y-2 text-sm">
+              <li class="text-gray-400 text-center py-2">No entries yet. Add a meal to track daily intake.</li>
+            </ul>
+          </div>
+          <div class="mt-3 pt-2 border-t border-gray-100 flex justify-between font-semibold">
+            <span>Total Today:</span>
+            <span id="totalCaloriesSpan" class="text-orange-600">0 kcal</span>
+          </div>
+          <p class="text-xs text-gray-400 mt-3"><i class="fas fa-sync-alt"></i> Data stored in browser IndexedDB (persistent)</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- EXERCISE LIBRARY with VIDEO + AI VOICE-OVER -->
+    <section id="exercise-library" class="mb-16 scroll-mt-20">
+      <div class="flex items-center gap-3 border-b border-gray-200 pb-3 mb-6">
+        <i class="fas fa-video text-3xl text-orange-500"></i>
+        <h2 class="text-2xl font-bold text-gray-800">Bodybuilding Exercise Library</h2>
+        <span class="bg-gray-100 text-gray-600 text-xs px-2 py-1 rounded-full">click 🔊 for AI voice coaching</span>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <!-- Exercise Card 1: Bench Press -->
+        <div class="bg-white rounded-2xl shadow-lg overflow-hidden transition hover:shadow-xl group">
+          <div class="relative bg-black aspect-video">
+            <video class="w-full h-full object-cover" controls poster="https://via.placeholder.com/640x360.png?text=Bench+Press+Demo">
+              <source src="assets/videos/bench-press.mp4" type="video/mp4">
+              Your browser does not support the video tag. Please add bench-press.mp4 to assets/videos/
+            </video>
+          </div>
+          <div class="p-4">
+            <div class="flex justify-between items-center"><h3 class="text-xl font-bold text-gray-800">Barbell Bench Press</h3><button class="voice-exercise-btn text-orange-500 text-2xl hover:scale-110 transition" data-exercise="bench"><i class="fas fa-head-side-vr"></i> 🔊</button></div>
+            <p class="text-gray-500 text-sm mt-1">Target: Chest, Triceps, Front Delts</p>
+            <div class="mt-3 text-sm text-gray-600"><i class="fas fa-dumbbell"></i> <span class="font-medium">Tips:</span> Keep shoulders retracted, lower bar to mid-chest.</div>
+          </div>
+        </div>
+        <!-- Exercise Card 2: Pull-ups -->
+        <div class="bg-white rounded-2xl shadow-lg overflow-hidden transition">
+          <div class="relative bg-black aspect-video">
+            <video class="w-full h-full object-cover" controls>
+              <source src="assets/videos/pull-up.mp4" type="video/mp4">
+            </video>
+          </div>
+          <div class="p-4">
+            <div class="flex justify-between"><h3 class="text-xl font-bold text-gray-800">Weighted Pull-up</h3><button class="voice-exercise-btn text-orange-500 text-2xl hover:scale-110" data-exercise="pullup"><i class="fas fa-head-side-vr"></i> 🔊</button></div>
+            <p class="text-gray-500 text-sm">Target: Lats, Biceps, Rear Delts</p>
+            <div class="mt-2 text-sm text-gray-600"><i class="fas fa-info-circle"></i> Full range of motion, avoid swinging.</div>
+          </div>
+        </div>
+        <!-- Exercise Card 3: Squat -->
+        <div class="bg-white rounded-2xl shadow-lg overflow-hidden transition">
+          <div class="relative bg-black aspect-video">
+            <video class="w-full h-full object-cover" controls>
+              <source src="assets/videos/squat.mp4" type="video/mp4">
+            </video>
+          </div>
+          <div class="p-4">
+            <div class="flex justify-between"><h3 class="text-xl font-bold text-gray-800">Barbell Back Squat</h3><button class="voice-exercise-btn text-orange-500 text-2xl hover:scale-110" data-exercise="squat"><i class="fas fa-head-side-vr"></i> 🔊</button></div>
+            <p class="text-gray-500 text-sm">Target: Quads, Glutes, Core</p>
+            <div class="mt-2 text-sm text-gray-600"><i class="fas fa-walking"></i> Keep chest up, knees track over toes.</div>
+          </div>
+        </div>
+        <!-- Exercise Card 4: Shoulder Press -->
+        <div class="bg-white rounded-2xl shadow-lg overflow-hidden transition">
+          <div class="relative bg-black aspect-video"><video class="w-full h-full object-cover" controls><source src="assets/videos/shoulder-press.mp4" type="video/mp4"></video></div>
+          <div class="p-4"><div class="flex justify-between"><h3 class="text-xl font-bold text-gray-800">Arnold Press</h3><button class="voice-exercise-btn text-orange-500 text-2xl" data-exercise="shoulder"><i class="fas fa-head-side-vr"></i> 🔊</button></div><p class="text-gray-500 text-sm">Target: Deltoids, Traps</p><div class="mt-2 text-sm text-gray-600"><i class="fas fa-hand-peace"></i> Rotate palms during press for full stimulation.</div></div>
+        </div>
+        <!-- Exercise Card 5: Deadlift -->
+        <div class="bg-white rounded-2xl shadow-lg overflow-hidden transition">
+          <div class="relative bg-black aspect-video"><video class="w-full h-full object-cover" controls><source src="assets/videos/deadlift.mp4" type="video/mp4"></video></div>
+          <div class="p-4"><div class="flex justify-between"><h3 class="text-xl font-bold text-gray-800">Conventional Deadlift</h3><button class="voice-exercise-btn text-orange-500 text-2xl" data-exercise="deadlift"><i class="fas fa-head-side-vr"></i> 🔊</button></div><p class="text-gray-500 text-sm">Target: Hamstrings, Glutes, Spinal Erectors</p><div class="mt-2 text-sm text-gray-600"><i class="fas fa-exclamation-triangle"></i> Maintain neutral spine, hinge at hips.</div></div>
+        </div>
+        <!-- Exercise Card 6: Dumbbell Curl -->
+        <div class="bg-white rounded-2xl shadow-lg overflow-hidden transition">
+          <div class="relative bg-black aspect-video"><video class="w-full h-full object-cover" controls><source src="assets/videos/bicep-curl.mp4" type="video/mp4"></video></div>
+          <div class="p-4"><div class="flex justify-between"><h3 class="text-xl font-bold text-gray-800">Dumbbell Bicep Curl</h3><button class="voice-exercise-btn text-orange-500 text-2xl" data-exercise="curl"><i class="fas fa-head-side-vr"></i> 🔊</button></div><p class="text-gray-500 text-sm">Target: Biceps Brachii</p><div class="mt-2 text-sm text-gray-600"><i class="fas fa-heart"></i> Squeeze at top, control negative.</div></div>
+        </div>
+      </div>
+      <p class="text-xs text-center text-gray-400 mt-6">*Add your exercise videos to the assets/videos/ folder for the demos to work.</p>
+    </section>
+
+    <!-- AI Voice Assistant floating button -->
+    <div class="fixed bottom-5 right-5 z-40">
+      <div class="bg-orange-600 text-white p-3 rounded-full shadow-lg cursor-pointer hover:bg-orange-700 transition" id="floatingVoiceHelp">
+        <i class="fas fa-robot text-xl"></i>
+      </div>
+    </div>
+  </main>
+
+  <footer class="bg-gray-800 text-white py-6 mt-12">
+    <div class="max-w-7xl mx-auto px-4 text-center text-sm">
+      <p><i class="fab fa-github"></i> Source code available on <a href="https://github.com/yourusername/fusionfit-tracker" target="_blank" class="underline hover:text-orange-300">GitHub Repository</a> | Built with Tailwind, IndexedDB & Web Speech API</p>
+      <p class="text-gray-400 mt-1">© 2025 FusionFit — AI voice coach & fitness tracker.</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
