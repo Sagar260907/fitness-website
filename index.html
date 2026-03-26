@@ -7,40 +7,7 @@
   <!-- Google Fonts + Tailwind + Font Awesome -->
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-  <style>
-    /* Custom styles for card hover and image overlay */
-    .exercise-img {
-      transition: transform 0.3s ease;
-    }
-    .group:hover .exercise-img {
-      transform: scale(1.02);
-    }
-    .voice-btn {
-      transition: all 0.2s ease;
-    }
-    .voice-btn:hover {
-      transform: scale(1.1);
-      color: #f97316;
-    }
-    /* Custom scrollbar for meal log */
-    .meal-log-scroll::-webkit-scrollbar {
-      width: 6px;
-    }
-    .meal-log-scroll::-webkit-scrollbar-track {
-      background: #f1f1f1;
-      border-radius: 10px;
-    }
-    .meal-log-scroll::-webkit-scrollbar-thumb {
-      background: #fdba74;
-      border-radius: 10px;
-    }
-    .calorie-card {
-      transition: box-shadow 0.2s;
-    }
-    .calorie-card:hover {
-      box-shadow: 0 20px 25px -12px rgba(0, 0, 0, 0.1);
-    }
-  </style>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body class="antialiased bg-gray-50">
 
@@ -50,25 +17,29 @@
       <div class="flex items-center space-x-2">
         <i class="fas fa-dumbbell text-white text-2xl"></i>
         <h1 class="text-2xl font-extrabold tracking-tight text-white">Fusion<span class="font-light">Fit</span></h1>
-        <span class="bg-white/20 text-white text-xs px-2 py-1 rounded-full ml-2">AI Coach</span>
+        <span class="bg-white/20 text-white text-xs px-2 py-1 rounded-full ml-2 backdrop-blur-sm">AI Coach</span>
       </div>
       <div class="flex items-center space-x-4 text-white">
-        <a href="#calorie-calc" class="hover:underline text-sm font-medium hidden sm:inline"><i class="fas fa-fire-alt mr-1"></i> Calorie Tool</a>
-        <a href="#exercise-library" class="hover:underline text-sm font-medium hidden sm:inline"><i class="fas fa-image mr-1"></i> Exercise Library</a>
-        <a href="#" id="fakeRepoLink" class="bg-white/20 hover:bg-white/30 px-3 py-1.5 rounded-full text-sm font-semibold transition flex items-center gap-1"><i class="fab fa-github"></i> GitHub Repo</a>
+        <a href="#calorie-calc" class="nav-link hover:underline text-sm font-medium hidden sm:inline"><i class="fas fa-fire-alt mr-1"></i> Calorie Tool</a>
+        <a href="#exercise-library" class="nav-link hover:underline text-sm font-medium hidden sm:inline"><i class="fas fa-image mr-1"></i> Exercise Library</a>
+        <a href="#" id="fakeRepoLink" class="bg-white/20 hover:bg-white/30 px-3 py-1.5 rounded-full text-sm font-semibold transition flex items-center gap-1 backdrop-blur-sm"><i class="fab fa-github"></i> GitHub Repo</a>
       </div>
     </div>
   </header>
 
   <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
     <!-- Hero section -->
-    <div class="bg-orange-50 rounded-2xl p-6 md:p-8 mb-12 shadow-sm border border-orange-100">
+    <div class="bg-gradient-to-br from-orange-50 to-amber-50 rounded-2xl p-6 md:p-8 mb-12 shadow-sm border border-orange-100">
       <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
         <div>
           <h2 class="text-3xl md:text-4xl font-bold text-gray-800">Smart Fitness Tracker <span class="text-orange-500">+ AI Voice</span></h2>
           <p class="text-gray-600 mt-2 max-w-2xl">Calculate daily calories, view exercise demo images, and let our AI voice coach explain each movement with tips & form cues.</p>
+          <div class="flex gap-2 mt-3">
+            <span class="badge"><i class="fas fa-microphone-alt"></i> Voice Enabled</span>
+            <span class="badge"><i class="fas fa-chart-line"></i> Smart Analytics</span>
+          </div>
         </div>
-        <button id="globalVoiceIntro" class="bg-orange-600 hover:bg-orange-700 text-white px-5 py-2 rounded-full shadow-md flex items-center gap-2 transition"><i class="fas fa-microphone-alt"></i> Welcome Voice-over</button>
+        <button id="globalVoiceIntro" class="bg-orange-600 hover:bg-orange-700 text-white px-5 py-2.5 rounded-full shadow-md flex items-center gap-2 transition transform hover:scale-105"><i class="fas fa-microphone-alt"></i> Welcome Voice-over</button>
       </div>
     </div>
 
@@ -86,31 +57,31 @@
           <h3 class="text-xl font-semibold text-gray-700 mb-4"><i class="fas fa-user text-orange-500 mr-2"></i> Your Metrics</h3>
           <div class="space-y-4">
             <div class="grid grid-cols-2 gap-4">
-              <div><label class="block text-sm font-medium text-gray-600">Age</label><input type="number" id="age" placeholder="25" class="mt-1 w-full border border-gray-300 rounded-lg p-2 focus:ring-orange-400 focus:border-orange-400"></div>
-              <div><label class="block text-sm font-medium text-gray-600">Weight (kg)</label><input type="number" id="weight" placeholder="70" class="mt-1 w-full border border-gray-300 rounded-lg p-2"></div>
-              <div><label class="block text-sm font-medium text-gray-600">Height (cm)</label><input type="number" id="height" placeholder="170" class="mt-1 w-full border border-gray-300 rounded-lg p-2"></div>
-              <div><label class="block text-sm font-medium text-gray-600">Gender</label><select id="gender" class="mt-1 w-full border border-gray-300 rounded-lg p-2"><option>Male</option><option>Female</option></select></div>
+              <div><label class="block text-sm font-medium text-gray-600">Age</label><input type="number" id="age" placeholder="25" class="mt-1 w-full border border-gray-300 rounded-lg p-2 focus:ring-2 focus:ring-orange-400 focus:border-transparent transition"></div>
+              <div><label class="block text-sm font-medium text-gray-600">Weight (kg)</label><input type="number" id="weight" placeholder="70" class="mt-1 w-full border border-gray-300 rounded-lg p-2 focus:ring-2 focus:ring-orange-400"></div>
+              <div><label class="block text-sm font-medium text-gray-600">Height (cm)</label><input type="number" id="height" placeholder="170" class="mt-1 w-full border border-gray-300 rounded-lg p-2 focus:ring-2 focus:ring-orange-400"></div>
+              <div><label class="block text-sm font-medium text-gray-600">Gender</label><select id="gender" class="mt-1 w-full border border-gray-300 rounded-lg p-2 focus:ring-2 focus:ring-orange-400"><option>Male</option><option>Female</option></select></div>
             </div>
             <div><label class="block text-sm font-medium text-gray-600">Activity Level</label><select id="activity" class="w-full border border-gray-300 rounded-lg p-2"><option value="1.2">Sedentary (little exercise)</option><option value="1.375">Light (1-3 days/week)</option><option value="1.55">Moderate (3-5 days)</option><option value="1.725">Active (daily)</option><option value="1.9">Athlete</option></select></div>
-            <button id="calcCaloriesBtn" class="w-full bg-orange-500 hover:bg-orange-600 text-white font-bold py-2.5 rounded-lg shadow transition flex items-center justify-center gap-2"><i class="fas fa-chart-line"></i> Calculate BMR & Daily Calories</button>
+            <button id="calcCaloriesBtn" class="w-full bg-orange-500 hover:bg-orange-600 text-white font-bold py-2.5 rounded-lg shadow transition flex items-center justify-center gap-2 transform hover:scale-[1.02]"><i class="fas fa-chart-line"></i> Calculate BMR & Daily Calories</button>
           </div>
-          <div id="calorieResult" class="mt-5 p-4 bg-gray-50 rounded-lg border border-gray-200 hidden">
+          <div id="calorieResult" class="mt-5 p-4 bg-gradient-to-r from-gray-50 to-orange-50 rounded-lg border border-orange-200 hidden">
             <p class="font-bold text-gray-800"><i class="fas fa-heartbeat text-orange-500 mr-1"></i> BMR: <span id="bmrValue">0</span> kcal/day</p>
             <p class="font-bold text-gray-800 mt-1"><i class="fas fa-apple-alt text-green-600 mr-1"></i> Maintenance Calories: <span id="maintenanceValue">0</span> kcal/day</p>
             <p class="text-sm text-gray-500 mt-2">*Based on Mifflin-St Jeor formula. Adjust for goals.</p>
           </div>
         </div>
 
-        <!-- History / Log (IndexedDB simulation via localStorage fallback with persistent structure) -->
+        <!-- History / Log (localStorage) -->
         <div class="bg-white rounded-xl shadow-lg p-6 border border-gray-100">
           <div class="flex justify-between items-center mb-4 flex-wrap gap-2">
             <h3 class="text-xl font-semibold text-gray-700"><i class="fas fa-database text-orange-500 mr-2"></i> Nutrition Log (Local DB)</h3>
-            <button id="clearLogsBtn" class="text-red-500 text-sm hover:bg-red-50 px-3 py-1 rounded-full transition"><i class="fas fa-trash-alt"></i> Clear</button>
+            <button id="clearLogsBtn" class="text-red-500 text-sm hover:bg-red-50 px-3 py-1 rounded-full transition"><i class="fas fa-trash-alt"></i> Clear All</button>
           </div>
           <div class="mb-3 flex gap-2">
-            <input type="text" id="mealName" placeholder="Meal (e.g., Protein shake)" class="flex-1 border border-gray-300 rounded-lg p-2 text-sm">
-            <input type="number" id="mealCalories" placeholder="Calories" class="w-28 border border-gray-300 rounded-lg p-2 text-sm">
-            <button id="addMealBtn" class="bg-green-500 hover:bg-green-600 text-white px-3 rounded-lg"><i class="fas fa-plus"></i></button>
+            <input type="text" id="mealName" placeholder="Meal (e.g., Protein shake)" class="flex-1 border border-gray-300 rounded-lg p-2 text-sm focus:ring-2 focus:ring-orange-400">
+            <input type="number" id="mealCalories" placeholder="Calories" class="w-28 border border-gray-300 rounded-lg p-2 text-sm focus:ring-2 focus:ring-orange-400">
+            <button id="addMealBtn" class="bg-green-500 hover:bg-green-600 text-white px-3 rounded-lg transition transform hover:scale-105"><i class="fas fa-plus"></i></button>
           </div>
           <div class="max-h-48 overflow-y-auto meal-log-scroll border-t border-gray-100 pt-2">
             <ul id="mealLogList" class="space-y-2 text-sm">
@@ -118,15 +89,15 @@
             </ul>
           </div>
           <div class="mt-3 pt-2 border-t border-gray-100 flex justify-between font-semibold">
-            <span>Total Today:</span>
-            <span id="totalCaloriesSpan" class="text-orange-600">0 kcal</span>
+            <span><i class="fas fa-chart-simple text-orange-500"></i> Total Today:</span>
+            <span id="totalCaloriesSpan" class="text-orange-600 text-xl font-bold">0 kcal</span>
           </div>
-          <p class="text-xs text-gray-400 mt-3"><i class="fas fa-sync-alt"></i> Data stored in browser localStorage (persistent)</p>
+          <p class="text-xs text-gray-400 mt-3"><i class="fas fa-save"></i> Data stored in browser localStorage (persistent)</p>
         </div>
       </div>
     </section>
 
-    <!-- EXERCISE LIBRARY with IMAGES + AI VOICE-OVER (No videos) -->
+    <!-- EXERCISE LIBRARY with YOUR IMAGES + AI VOICE-OVER -->
     <section id="exercise-library" class="mb-16 scroll-mt-20">
       <div class="flex items-center gap-3 border-b border-gray-200 pb-3 mb-6">
         <i class="fas fa-image text-3xl text-orange-500"></i>
@@ -134,63 +105,105 @@
         <span class="bg-gray-100 text-gray-600 text-xs px-2 py-1 rounded-full">click 🔊 for AI voice coaching</span>
       </div>
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        <!-- Exercise Card 1: Bench Press with Image -->
-        <div class="bg-white rounded-2xl shadow-lg overflow-hidden transition hover:shadow-xl group">
-          <div class="relative bg-gradient-to-br from-gray-800 to-gray-900 aspect-video flex items-center justify-center overflow-hidden">
-            <img class="w-full h-full object-cover exercise-img" src="https://placehold.co/640x360/1e293b/white?text=🏋️+BENCH+PRESS" alt="Barbell Bench Press demonstration">
-            <div class="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition"></div>
+        <!-- Exercise 1: Barbell Bench Press -->
+        <div class="bg-white rounded-2xl shadow-lg overflow-hidden transition exercise-card group">
+          <div class="exercise-img-container aspect-video">
+            <img class="exercise-img" src="assets/barbell bench press.jpeg" alt="Barbell Bench Press demonstration" onerror="this.src='https://placehold.co/640x360/1e293b/white?text=🏋️+BENCH+PRESS'">
+            <div class="img-overlay"></div>
           </div>
           <div class="p-4">
-            <div class="flex justify-between items-center"><h3 class="text-xl font-bold text-gray-800">Barbell Bench Press</h3><button class="voice-exercise-btn text-orange-500 text-2xl hover:scale-110 transition" data-exercise="bench"><i class="fas fa-head-side-vr"></i> 🔊</button></div>
+            <div class="flex justify-between items-center">
+              <h3 class="text-xl font-bold text-gray-800">Barbell Bench Press</h3>
+              <button class="voice-exercise-btn" data-exercise="bench"><i class="fas fa-head-side-vr text-2xl"></i></button>
+            </div>
             <p class="text-gray-500 text-sm mt-1">Target: Chest, Triceps, Front Delts</p>
             <div class="mt-3 text-sm text-gray-600"><i class="fas fa-dumbbell"></i> <span class="font-medium">Tips:</span> Keep shoulders retracted, lower bar to mid-chest.</div>
           </div>
         </div>
-        <!-- Exercise Card 2: Pull-ups -->
-        <div class="bg-white rounded-2xl shadow-lg overflow-hidden transition group">
-          <div class="relative bg-gradient-to-br from-gray-800 to-gray-900 aspect-video flex items-center justify-center overflow-hidden">
-            <img class="w-full h-full object-cover exercise-img" src="https://placehold.co/640x360/1e293b/white?text=💪+PULL+UP" alt="Weighted Pull-up demonstration">
+        
+        <!-- Exercise 2: Weighted Pull-ups -->
+        <div class="bg-white rounded-2xl shadow-lg overflow-hidden transition exercise-card group">
+          <div class="exercise-img-container aspect-video">
+            <img class="exercise-img" src="assets/weighted pullups.jpeg" alt="Weighted Pull-up demonstration" onerror="this.src='https://placehold.co/640x360/1e293b/white?text=💪+PULL+UP'">
+            <div class="img-overlay"></div>
           </div>
           <div class="p-4">
-            <div class="flex justify-between"><h3 class="text-xl font-bold text-gray-800">Weighted Pull-up</h3><button class="voice-exercise-btn text-orange-500 text-2xl hover:scale-110" data-exercise="pullup"><i class="fas fa-head-side-vr"></i> 🔊</button></div>
+            <div class="flex justify-between items-center">
+              <h3 class="text-xl font-bold text-gray-800">Weighted Pull-up</h3>
+              <button class="voice-exercise-btn" data-exercise="pullup"><i class="fas fa-head-side-vr text-2xl"></i></button>
+            </div>
             <p class="text-gray-500 text-sm">Target: Lats, Biceps, Rear Delts</p>
             <div class="mt-2 text-sm text-gray-600"><i class="fas fa-info-circle"></i> Full range of motion, avoid swinging.</div>
           </div>
         </div>
-        <!-- Exercise Card 3: Squat -->
-        <div class="bg-white rounded-2xl shadow-lg overflow-hidden transition group">
-          <div class="relative bg-gradient-to-br from-gray-800 to-gray-900 aspect-video flex items-center justify-center overflow-hidden">
-            <img class="w-full h-full object-cover exercise-img" src="https://placehold.co/640x360/1e293b/white?text=🦵+BACK+SQUAT" alt="Barbell Back Squat demonstration">
+        
+        <!-- Exercise 3: Barbell Back Squat -->
+        <div class="bg-white rounded-2xl shadow-lg overflow-hidden transition exercise-card group">
+          <div class="exercise-img-container aspect-video">
+            <img class="exercise-img" src="assets/barbell back squat.jpeg" alt="Barbell Back Squat demonstration" onerror="this.src='https://placehold.co/640x360/1e293b/white?text=🦵+BACK+SQUAT'">
+            <div class="img-overlay"></div>
           </div>
           <div class="p-4">
-            <div class="flex justify-between"><h3 class="text-xl font-bold text-gray-800">Barbell Back Squat</h3><button class="voice-exercise-btn text-orange-500 text-2xl hover:scale-110" data-exercise="squat"><i class="fas fa-head-side-vr"></i> 🔊</button></div>
+            <div class="flex justify-between items-center">
+              <h3 class="text-xl font-bold text-gray-800">Barbell Back Squat</h3>
+              <button class="voice-exercise-btn" data-exercise="squat"><i class="fas fa-head-side-vr text-2xl"></i></button>
+            </div>
             <p class="text-gray-500 text-sm">Target: Quads, Glutes, Core</p>
             <div class="mt-2 text-sm text-gray-600"><i class="fas fa-walking"></i> Keep chest up, knees track over toes.</div>
           </div>
         </div>
-        <!-- Exercise Card 4: Shoulder Press -->
-        <div class="bg-white rounded-2xl shadow-lg overflow-hidden transition group">
-          <div class="relative bg-gradient-to-br from-gray-800 to-gray-900 aspect-video flex items-center justify-center overflow-hidden">
-            <img class="w-full h-full object-cover exercise-img" src="https://placehold.co/640x360/1e293b/white?text=🏋️+ARNOLD+PRESS" alt="Arnold Press demonstration">
+        
+        <!-- Exercise 4: Arnold Press -->
+        <div class="bg-white rounded-2xl shadow-lg overflow-hidden transition exercise-card group">
+          <div class="exercise-img-container aspect-video">
+            <img class="exercise-img" src="assets/arnold press.jpeg" alt="Arnold Press demonstration" onerror="this.src='https://placehold.co/640x360/1e293b/white?text=🏋️+ARNOLD+PRESS'">
+            <div class="img-overlay"></div>
           </div>
-          <div class="p-4"><div class="flex justify-between"><h3 class="text-xl font-bold text-gray-800">Arnold Press</h3><button class="voice-exercise-btn text-orange-500 text-2xl hover:scale-110" data-exercise="shoulder"><i class="fas fa-head-side-vr"></i> 🔊</button></div><p class="text-gray-500 text-sm">Target: Deltoids, Traps</p><div class="mt-2 text-sm text-gray-600"><i class="fas fa-hand-peace"></i> Rotate palms during press for full stimulation.</div></div>
+          <div class="p-4">
+            <div class="flex justify-between items-center">
+              <h3 class="text-xl font-bold text-gray-800">Arnold Press</h3>
+              <button class="voice-exercise-btn" data-exercise="shoulder"><i class="fas fa-head-side-vr text-2xl"></i></button>
+            </div>
+            <p class="text-gray-500 text-sm">Target: Deltoids, Traps</p>
+            <div class="mt-2 text-sm text-gray-600"><i class="fas fa-hand-peace"></i> Rotate palms during press for full stimulation.</div>
+          </div>
         </div>
-        <!-- Exercise Card 5: Deadlift -->
-        <div class="bg-white rounded-2xl shadow-lg overflow-hidden transition group">
-          <div class="relative bg-gradient-to-br from-gray-800 to-gray-900 aspect-video flex items-center justify-center overflow-hidden">
-            <img class="w-full h-full object-cover exercise-img" src="https://placehold.co/640x360/1e293b/white?text=🏋️+DEADLIFT" alt="Conventional Deadlift demonstration">
+        
+        <!-- Exercise 5: Conventional Deadlift -->
+        <div class="bg-white rounded-2xl shadow-lg overflow-hidden transition exercise-card group">
+          <div class="exercise-img-container aspect-video">
+            <img class="exercise-img" src="assets/conventional dead lift.jpeg" alt="Conventional Deadlift demonstration" onerror="this.src='https://placehold.co/640x360/1e293b/white?text=🏋️+DEADLIFT'">
+            <div class="img-overlay"></div>
           </div>
-          <div class="p-4"><div class="flex justify-between"><h3 class="text-xl font-bold text-gray-800">Conventional Deadlift</h3><button class="voice-exercise-btn text-orange-500 text-2xl hover:scale-110" data-exercise="deadlift"><i class="fas fa-head-side-vr"></i> 🔊</button></div><p class="text-gray-500 text-sm">Target: Hamstrings, Glutes, Spinal Erectors</p><div class="mt-2 text-sm text-gray-600"><i class="fas fa-exclamation-triangle"></i> Maintain neutral spine, hinge at hips.</div></div>
+          <div class="p-4">
+            <div class="flex justify-between items-center">
+              <h3 class="text-xl font-bold text-gray-800">Conventional Deadlift</h3>
+              <button class="voice-exercise-btn" data-exercise="deadlift"><i class="fas fa-head-side-vr text-2xl"></i></button>
+            </div>
+            <p class="text-gray-500 text-sm">Target: Hamstrings, Glutes, Spinal Erectors</p>
+            <div class="mt-2 text-sm text-gray-600"><i class="fas fa-exclamation-triangle"></i> Maintain neutral spine, hinge at hips.</div>
+          </div>
         </div>
-        <!-- Exercise Card 6: Dumbbell Curl -->
-        <div class="bg-white rounded-2xl shadow-lg overflow-hidden transition group">
-          <div class="relative bg-gradient-to-br from-gray-800 to-gray-900 aspect-video flex items-center justify-center overflow-hidden">
-            <img class="w-full h-full object-cover exercise-img" src="https://placehold.co/640x360/1e293b/white?text=💪+BICEP+CURL" alt="Dumbbell Bicep Curl demonstration">
+        
+        <!-- Exercise 6: Dumbbell Bicep Curl -->
+        <div class="bg-white rounded-2xl shadow-lg overflow-hidden transition exercise-card group">
+          <div class="exercise-img-container aspect-video">
+            <img class="exercise-img" src="assets/dumbell biceps curls.jpeg" alt="Dumbbell Bicep Curl demonstration" onerror="this.src='https://placehold.co/640x360/1e293b/white?text=💪+BICEP+CURL'">
+            <div class="img-overlay"></div>
           </div>
-          <div class="p-4"><div class="flex justify-between"><h3 class="text-xl font-bold text-gray-800">Dumbbell Bicep Curl</h3><button class="voice-exercise-btn text-orange-500 text-2xl hover:scale-110" data-exercise="curl"><i class="fas fa-head-side-vr"></i> 🔊</button></div><p class="text-gray-500 text-sm">Target: Biceps Brachii</p><div class="mt-2 text-sm text-gray-600"><i class="fas fa-heart"></i> Squeeze at top, control negative.</div></div>
+          <div class="p-4">
+            <div class="flex justify-between items-center">
+              <h3 class="text-xl font-bold text-gray-800">Dumbbell Bicep Curl</h3>
+              <button class="voice-exercise-btn" data-exercise="curl"><i class="fas fa-head-side-vr text-2xl"></i></button>
+            </div>
+            <p class="text-gray-500 text-sm">Target: Biceps Brachii</p>
+            <div class="mt-2 text-sm text-gray-600"><i class="fas fa-heart"></i> Squeeze at top, control negative.</div>
+          </div>
         </div>
       </div>
-      <p class="text-xs text-center text-gray-400 mt-6">*Premium exercise images with AI voice coaching — tap the speaker icon for form guidance.</p>
+      <p class="text-xs text-center text-gray-400 mt-6 flex items-center justify-center gap-2">
+        <i class="fas fa-image text-orange-400"></i> Premium exercise imagery with AI voice coaching — tap the speaker icon for form guidance.
+      </p>
     </section>
 
     <!-- AI Voice Assistant floating button -->
@@ -203,205 +216,11 @@
 
   <footer class="bg-gray-800 text-white py-6 mt-12">
     <div class="max-w-7xl mx-auto px-4 text-center text-sm">
-      <p><i class="fab fa-github"></i> Source code available on <a href="#" id="footerRepoLink" class="underline hover:text-orange-300">GitHub Repository</a> | Built with Tailwind, localStorage & Web Speech API</p>
-      <p class="text-gray-400 mt-1">© 2025 FusionFit — AI voice coach & fitness tracker. No videos, only dynamic imagery.</p>
+      <p><i class="fab fa-github"></i> Source code available on <a href="#" id="footerRepoLink" class="footer-link underline hover:text-orange-300">GitHub Repository</a> | Built with Tailwind, localStorage & Web Speech API</p>
+      <p class="text-gray-400 mt-1">© 2025 FusionFit — AI voice coach & fitness tracker. Real exercise images included.</p>
     </div>
   </footer>
 
-  <script>
-    (function() {
-      // ---------- CALORIE LOGIC (localStorage) ----------
-      let mealEntries = [];
-      const STORAGE_KEY = 'fusionfit_meals';
-
-      function loadMeals() {
-        const stored = localStorage.getItem(STORAGE_KEY);
-        if(stored) {
-          mealEntries = JSON.parse(stored);
-        } else {
-          mealEntries = [];
-        }
-        renderMealLog();
-      }
-
-      function saveMeals() {
-        localStorage.setItem(STORAGE_KEY, JSON.stringify(mealEntries));
-        renderMealLog();
-      }
-
-      function renderMealLog() {
-        const listEl = document.getElementById('mealLogList');
-        const totalSpan = document.getElementById('totalCaloriesSpan');
-        if(!listEl) return;
-        if(mealEntries.length === 0) {
-          listEl.innerHTML = '<li class="text-gray-400 text-center py-2">No entries yet. Add a meal to track daily intake.</li>';
-          totalSpan.innerText = '0 kcal';
-          return;
-        }
-        let total = 0;
-        let html = '';
-        mealEntries.forEach((entry, idx) => {
-          total += entry.calories;
-          html += `<li class="flex justify-between items-center bg-gray-50 p-2 rounded-lg border border-gray-100">
-                      <span><span class="font-medium">${escapeHtml(entry.name)}</span> <span class="text-orange-500">${entry.calories} kcal</span></span>
-                      <button class="delete-meal text-red-400 hover:text-red-600 text-sm" data-index="${idx}"><i class="fas fa-trash-alt"></i></button>
-                    </li>`;
-        });
-        listEl.innerHTML = html;
-        totalSpan.innerText = `${total} kcal`;
-        // attach delete events
-        document.querySelectorAll('.delete-meal').forEach(btn => {
-          btn.addEventListener('click', (e) => {
-            const idx = parseInt(btn.getAttribute('data-index'));
-            if(!isNaN(idx)) {
-              mealEntries.splice(idx, 1);
-              saveMeals();
-            }
-          });
-        });
-      }
-
-      function escapeHtml(str) {
-        if(!str) return '';
-        return str.replace(/[&<>]/g, function(m) {
-          if(m === '&') return '&amp;';
-          if(m === '<') return '&lt;';
-          if(m === '>') return '&gt;';
-          return m;
-        });
-      }
-
-      function addMeal(name, calories) {
-        if(!name.trim()) name = "Quick meal";
-        const calNum = parseInt(calories);
-        if(isNaN(calNum) || calNum <= 0) return false;
-        mealEntries.push({ name: name.trim(), calories: calNum, date: new Date().toISOString() });
-        saveMeals();
-        return true;
-      }
-
-      document.getElementById('addMealBtn')?.addEventListener('click', () => {
-        const nameInput = document.getElementById('mealName');
-        const calInput = document.getElementById('mealCalories');
-        if(addMeal(nameInput.value, calInput.value)) {
-          nameInput.value = '';
-          calInput.value = '';
-        } else {
-          alert('Please enter valid meal name and positive calories.');
-        }
-      });
-      document.getElementById('clearLogsBtn')?.addEventListener('click', () => {
-        if(confirm('Clear all nutrition logs?')) {
-          mealEntries = [];
-          saveMeals();
-        }
-      });
-      loadMeals();
-
-      // ---------- CALORIE CALCULATION (Mifflin-St Jeor) ----------
-      const calcBtn = document.getElementById('calcCaloriesBtn');
-      const calorieResultDiv = document.getElementById('calorieResult');
-      const bmrSpan = document.getElementById('bmrValue');
-      const maintenanceSpan = document.getElementById('maintenanceValue');
-
-      calcBtn?.addEventListener('click', () => {
-        const age = parseInt(document.getElementById('age').value);
-        const weight = parseFloat(document.getElementById('weight').value);
-        const height = parseFloat(document.getElementById('height').value);
-        const gender = document.getElementById('gender').value;
-        const activity = parseFloat(document.getElementById('activity').value);
-        if(isNaN(age) || isNaN(weight) || isNaN(height) || age <= 0 || weight <= 0 || height <= 0) {
-          alert('Please fill all fields with positive numbers.');
-          return;
-        }
-        let bmr;
-        if(gender === 'Male') {
-          bmr = 10 * weight + 6.25 * height - 5 * age + 5;
-        } else {
-          bmr = 10 * weight + 6.25 * height - 5 * age - 161;
-        }
-        const maintenance = Math.round(bmr * activity);
-        bmrSpan.innerText = Math.round(bmr);
-        maintenanceSpan.innerText = maintenance;
-        calorieResultDiv.classList.remove('hidden');
-      });
-
-      // ---------- WEB SPEECH API (AI VOICE COACH) ----------
-      let speechSynthesisSupported = 'speechSynthesis' in window;
-      let currentUtterance = null;
-
-      function speakText(text, onEnd = null) {
-        if(!speechSynthesisSupported) {
-          alert("Your browser does not support speech synthesis. Please use Chrome, Edge, or Safari.");
-          return;
-        }
-        if(currentUtterance) {
-          window.speechSynthesis.cancel();
-        }
-        const utterance = new SpeechSynthesisUtterance(text);
-        utterance.rate = 0.95;
-        utterance.pitch = 1.0;
-        utterance.lang = 'en-US';
-        utterance.onend = () => {
-          currentUtterance = null;
-          if(onEnd) onEnd();
-        };
-        currentUtterance = utterance;
-        window.speechSynthesis.speak(utterance);
-      }
-
-      // AI coach knowledge base for exercises
-      const exerciseScripts = {
-        bench: "Barbell Bench Press. Target: chest, triceps, and front deltoids. Pro tip: Keep your shoulder blades retracted, lower the bar to your mid-chest, and drive through your heels. Maintain a slight arch in your back for safety.",
-        pullup: "Weighted Pull-up. Focus on lats and biceps. Use a shoulder-width grip, engage your core, pull your chest to the bar, and avoid swinging. Controlled negatives build more muscle.",
-        squat: "Barbell Back Squat. Quads, glutes, and core. Keep your chest up, brace your abs, and ensure knees track over your toes. Go deep if mobility allows. Never round your lower back.",
-        shoulder: "Arnold Press. This variation targets all three deltoid heads. Start with palms facing you, press up while rotating palms forward. Control the movement and squeeze at the top.",
-        deadlift: "Conventional Deadlift. Hamstrings, glutes, and spinal erectors. Hinge at your hips, maintain a neutral spine, engage your lats, and drive through your heels. Never jerk the bar.",
-        curl: "Dumbbell Bicep Curl. Isolate biceps brachii. Keep elbows pinned to your sides, avoid swinging, and squeeze the biceps at the top. Lower the weight slowly for maximum tension."
-      };
-      
-      const globalWelcomeMessage = "Welcome to FusionFit AI Coach. Your intelligent fitness companion. Use the calorie calculator to track nutrition, and explore our exercise library. Click any speaker icon to hear detailed coaching on form and technique. Stay strong!";
-      
-      document.getElementById('globalVoiceIntro')?.addEventListener('click', () => {
-        speakText(globalWelcomeMessage);
-      });
-      
-      document.getElementById('floatingVoiceHelp')?.addEventListener('click', () => {
-        speakText("Hello! I'm your AI fitness assistant. You can ask about exercises, but for now, click any speaker icon next to an exercise to hear detailed coaching. Also, track your meals in the nutrition log. Stay fit!");
-      });
-      
-      // attach voice buttons to each exercise
-      const voiceBtns = document.querySelectorAll('.voice-exercise-btn');
-      voiceBtns.forEach(btn => {
-        btn.addEventListener('click', (e) => {
-          e.stopPropagation();
-          const exerciseKey = btn.getAttribute('data-exercise');
-          let script = "";
-          if(exerciseKey === 'bench') script = exerciseScripts.bench;
-          else if(exerciseKey === 'pullup') script = exerciseScripts.pullup;
-          else if(exerciseKey === 'squat') script = exerciseScripts.squat;
-          else if(exerciseKey === 'shoulder') script = exerciseScripts.shoulder;
-          else if(exerciseKey === 'deadlift') script = exerciseScripts.deadlift;
-          else if(exerciseKey === 'curl') script = exerciseScripts.curl;
-          else script = "Select an exercise to get AI form tips and muscle targeting information.";
-          
-          // add dynamic vibe: AI prefix
-          speakText(`AI Coach says: ${script}`);
-        });
-      });
-      
-      // GitHub repo link demo (just placeholder alert)
-      const fakeLinks = document.querySelectorAll('#fakeRepoLink, #footerRepoLink');
-      fakeLinks.forEach(link => {
-        link.addEventListener('click', (e) => {
-          e.preventDefault();
-          alert("🚀 GitHub repository simulation: FusionFit open-source project. Full source code available at github.com/fusionfit/ai-tracker (demo).");
-        });
-      });
-      
-      // Optional: small initial voice greeting but only after user interaction? Better to respect autoplay policies: we don't auto-speak.
-      // Additional UI: tooltip for voice. Done.
-    })();
-  </script>
+  <script src="script.js"></script>
 </body>
 </html>
